@@ -11,10 +11,11 @@ public class CinemasSeatTest {
 
         @Test
         public void oneCustomer(){
-
+                Cinema cinema = new Cinema();
+                Ticket ticket = new Ticket();
         }
         //Arrange
-        Cinema cinema = new Cinema();
+
         //Act
 
         //Assert
