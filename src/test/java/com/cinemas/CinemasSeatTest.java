@@ -1,24 +1,36 @@
 package com.cinemas;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CinemasSeatTest {
         //2D arrays seat numbers [3][5]
+        private Cinema cinema;
+        private static final int MAX_SEAT = 15;
 
+        @Before
+        public void setup(){
+
+        }
         @Test
         public void oneCustomer(){
-                Cinema cinema = new Cinema();
-                Ticket ticket = new Ticket();
+                //Arrange
+                cinema = new Cinema(1);
+                //ticket = new Ticket(1);
+
+                //Act
+                cinema.buyTicket();
+
+                //Assert
+                int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
+                //assertTrue(1 <= noOfSeat && 3 >= noOfSeat);
         }
-        //Arrange
-
-        //Act
-
-        //Assert
 
 
         /*Test Case 1
