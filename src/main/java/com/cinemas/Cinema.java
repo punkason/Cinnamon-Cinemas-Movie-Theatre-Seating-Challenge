@@ -14,6 +14,7 @@ public class Cinema {
         int count = 0;
         for(int i = 0; i < ROW; i++){
             for(int j = 0; j < COLUMN; j++){
+                //System.out.println(seat[i][j]);
                 if (!seat[i][j]){
                     count++;
                 }
@@ -38,12 +39,15 @@ public class Cinema {
     }
 
     private void assignSeat(int ticket) {
-        while(ticket > 0) {
-            for (int i = 0; i < ROW; i++) {
-                for (int j = 0; j < COLUMN; j++) {
-                    if (!seat[i][j]) {
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COLUMN; j++) {
+                if (!seat[i][j]) {
+                    if(ticket > 0) {
                         seat[i][j] = true;
                         ticket--;
+                        //System.out.println(seat[i][j] + "" + ticket);
+                    }else{
+                        break;
                     }
                 }
             }

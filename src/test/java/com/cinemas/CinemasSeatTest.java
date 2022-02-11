@@ -29,7 +29,8 @@ public class CinemasSeatTest {
 
                 //Assert
                 int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
-                //assertTrue(1 <= noOfSeat && 3 >= noOfSeat);
+                //System.out.println(noOfSeat);
+                assertTrue(1 <= noOfSeat && 3 >= noOfSeat);
         }
 
 
