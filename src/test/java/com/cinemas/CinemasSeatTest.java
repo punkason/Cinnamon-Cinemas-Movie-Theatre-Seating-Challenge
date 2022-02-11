@@ -130,7 +130,7 @@ public class CinemasSeatTest {
                 String result = cinema.printSeatingPlan();
                 assertTrue(result.equals(expectedTwo) || result.equals(expectedThree) || result.equals(expectedFour)|| result.equals(expectedFive)|| result.equals(expectedSix));
         }
-
+////////////////////////////////////////////////////////////////////////
         @Ignore
         @Test
         public void remainingTwoSeats(){
@@ -144,6 +144,21 @@ public class CinemasSeatTest {
                 int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
                 //System.out.println(noOfSeat);
                 assertTrue(1 <= noOfSeat && 3 >= noOfSeat);
+        }
+
+        @Test
+        public void fullHouse(){
+                //Arrange
+                cinema = new Cinema(15);
+
+                //Act
+                cinema.buyTicket();
+
+                //Assert
+                int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
+                //System.out.println(noOfSeat);
+                int expected = 0;
+                assertTrue(expected == noOfSeat );
         }
         /*
         Test Case 2
