@@ -16,12 +16,14 @@ public class CinemasSeatTest {
                 cinema.buyTicket();
 
                 //Assert
-                int expected = 0;
+                int expectedSeat = 0;
                 String expectedZero = "   1  2  3  4  5 \nC [Y][Y][Y][Y][Y]\nB [Y][Y][Y][Y][Y]\nA [Y][Y][Y][Y][Y]\n";
-                int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
-                String result = cinema.printSeatingPlan();
-                assertEquals(expectedZero, result);
-                assertEquals(expected, noOfSeat);
+
+                int actualSeat = MAX_SEAT - cinema.getAvailableSeat();
+                String actualPrintout = cinema.printSeatingPlan();
+
+                assertEquals(expectedZero, actualPrintout);
+                assertEquals(expectedSeat, actualSeat);
         }
 
         @Test
@@ -33,15 +35,17 @@ public class CinemasSeatTest {
                 cinema.buyTicket();
 
                 //Assert
+                int expectedMinSeat = 1;
+                int expectedMaxSeat = 3;
                 String expectedOne = "   1  2  3  4  5 \nC [Y][Y][Y][Y][Y]\nB [Y][Y][Y][Y][Y]\nA [N][Y][Y][Y][Y]\n";
                 String expectedTwo = "   1  2  3  4  5 \nC [Y][Y][Y][Y][Y]\nB [Y][Y][Y][Y][Y]\nA [N][N][Y][Y][Y]\n";
                 String expectedThree = "   1  2  3  4  5 \nC [Y][Y][Y][Y][Y]\nB [Y][Y][Y][Y][Y]\nA [N][N][N][Y][Y]\n";
 
-                int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
-                String result = cinema.printSeatingPlan();
+                int actualSeat = MAX_SEAT - cinema.getAvailableSeat();
+                String actualPrintout = cinema.printSeatingPlan();
 
-                assertTrue(1 <= noOfSeat && 3 >= noOfSeat);
-                assertTrue(result.equals(expectedOne) || result.equals(expectedTwo) || result.equals(expectedThree));
+                assertTrue(expectedMinSeat <= actualSeat && expectedMaxSeat >= actualSeat);
+                assertTrue(actualPrintout.equals(expectedOne) || actualPrintout.equals(expectedTwo) || actualPrintout.equals(expectedThree));
         }
 
         @Test
@@ -53,16 +57,19 @@ public class CinemasSeatTest {
                 cinema.buyTicket();
 
                 //Assert
+                int expectedMinSeat = 2;
+                int expectedMaxSeat = 6;
                 String expectedTwo = "   1  2  3  4  5 \nC [Y][Y][Y][Y][Y]\nB [Y][Y][Y][Y][Y]\nA [N][N][Y][Y][Y]\n";
                 String expectedThree = "   1  2  3  4  5 \nC [Y][Y][Y][Y][Y]\nB [Y][Y][Y][Y][Y]\nA [N][N][N][Y][Y]\n";
                 String expectedFour = "   1  2  3  4  5 \nC [Y][Y][Y][Y][Y]\nB [Y][Y][Y][Y][Y]\nA [N][N][N][N][Y]\n";
                 String expectedFive = "   1  2  3  4  5 \nC [Y][Y][Y][Y][Y]\nB [Y][Y][Y][Y][Y]\nA [N][N][N][N][N]\n";
                 String expectedSix = "   1  2  3  4  5 \nC [Y][Y][Y][Y][Y]\nB [N][Y][Y][Y][Y]\nA [N][N][N][N][N]\n";
-                int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
-                String result = cinema.printSeatingPlan();
 
-                assertTrue(2 <= noOfSeat && 6 >= noOfSeat);
-                assertTrue(result.equals(expectedTwo) || result.equals(expectedThree) || result.equals(expectedFour)|| result.equals(expectedFive)|| result.equals(expectedSix));
+                int actualSeat = MAX_SEAT - cinema.getAvailableSeat();
+                String actualPrintout = cinema.printSeatingPlan();
+
+                assertTrue(expectedMinSeat <= actualSeat && expectedMaxSeat >= actualSeat);
+                assertTrue(actualPrintout.equals(expectedTwo) || actualPrintout.equals(expectedThree) || actualPrintout.equals(expectedFour)|| actualPrintout.equals(expectedFive)|| actualPrintout.equals(expectedSix));
         }
 
         @Test
@@ -74,7 +81,7 @@ public class CinemasSeatTest {
                 cinema.buyTicket();
 
                 //Assert
-                int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
+                int noOfSeat = MAX_SEAT - cinema.getAvailableSeat();
                 int expected = 15;
                 String expectedOutput = "All tickets have been sold.";
                 assertEquals(expected, noOfSeat);

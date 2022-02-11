@@ -13,7 +13,7 @@ public class Cinema {
         seat = new boolean [ROW][COLUMN];
     }
 
-    public int getRemainingSeat(){
+    public int getAvailableSeat(){
         return availableTicket;
         /*int count = 0;
         for(int i = 0; i < ROW; i++){
@@ -54,7 +54,7 @@ public class Cinema {
     }
 
     private boolean availableForSale(int ticket) {
-        return (getRemainingSeat() >= ticket);
+        return (getAvailableSeat() >= ticket);
     }
 
     private void assignSeat(int ticket) {
