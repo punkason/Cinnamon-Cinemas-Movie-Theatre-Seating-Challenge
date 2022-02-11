@@ -4,7 +4,7 @@ public class Cinema {
     private final static int ROW = 3;
     private final static int COLUMN = 5;
     private final static boolean[][] seat = new boolean [ROW][COLUMN];
-    private final int noOfCustomer;
+    private int noOfCustomer;
 
     public Cinema(int noOfCustomer){
         this.noOfCustomer=noOfCustomer;
@@ -28,10 +28,13 @@ public class Cinema {
     }
 
     public void buyTicket() {
-        int ticket = (int) (Math.random() *100 % 3)+ 1;
-        if (availableSeat(ticket)) {
-            assignSeat(ticket);
-        }//else
+        while(noOfCustomer > 0) {
+            int ticket = (int) (Math.random() * 100 % 3) + 1;
+            if (availableSeat(ticket)) {
+                assignSeat(ticket);
+            }//else
+            noOfCustomer--;
+        }
     }
 
     private boolean availableSeat(int ticket) {
@@ -52,5 +55,23 @@ public class Cinema {
                 }
             }
         }
+    }
+
+    public String printSeatingPlan() {
+        String output = "   1  2  3  4  5 \n";
+        for (int i = ROW-1; i >= 0; i--) {
+            output += (char) (65 + i) + " ";
+            for (int j = 0; j < COLUMN; j++) {
+                output += "[";
+                if(seat[i][j])
+                    output += "N";
+                else
+                    output += "Y";
+                output += "]";
+            }
+            output += "\n";
+        }
+        //System.out.println(output);
+        return output;
     }
 }
