@@ -15,10 +15,10 @@ public class CinemasSeatTest {
         private Cinema cinema;
         private static final int MAX_SEAT = 15;
 
-        @Before
+        /*@Before
         public void setup(){
 
-        }
+        }*/
 
         @Test
         public void printEmptyCinema(){
@@ -48,7 +48,7 @@ public class CinemasSeatTest {
 
                 //Assert
                 int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
-                //System.out.println(noOfSeat);
+                System.out.println(noOfSeat);
                 assertTrue(1 <= noOfSeat && 3 >= noOfSeat);
         }
 
@@ -156,9 +156,24 @@ public class CinemasSeatTest {
 
                 //Assert
                 int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
-                //System.out.println(noOfSeat);
-                int expected = 0;
-                assertTrue(expected == noOfSeat );
+                System.out.println(noOfSeat);
+                int expected = 15;
+                assertEquals(expected, noOfSeat);
+        }
+
+        @Test
+        public void printFullHouse(){
+                //Arrange
+                cinema = new Cinema(15);
+
+                //Act
+                cinema.buyTicket();
+
+                //Assert
+                int noOfSeat = MAX_SEAT - cinema.getRemainingSeat();
+                System.out.println(noOfSeat);
+                int expected = 15;
+                assertEquals(expected, noOfSeat);
         }
         /*
         Test Case 2

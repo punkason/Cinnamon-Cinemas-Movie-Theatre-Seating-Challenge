@@ -4,14 +4,17 @@ public class Cinema {
     private final static int ROW = 3;
     private final static int COLUMN = 5;
     private final static boolean[][] seat = new boolean [ROW][COLUMN];
+    private int availableTicket;
     private int noOfCustomer;
 
     public Cinema(int noOfCustomer){
         this.noOfCustomer=noOfCustomer;
+        availableTicket = ROW * COLUMN;
     }
 
     public int getRemainingSeat(){
-        int count = 0;
+        return availableTicket;
+        /*int count = 0;
         for(int i = 0; i < ROW; i++){
             for(int j = 0; j < COLUMN; j++){
                 //System.out.println(seat[i][j]);
@@ -21,6 +24,8 @@ public class Cinema {
             }
         }
         return count;
+
+         */
     }
 
     public boolean [][] getSeat(){
@@ -29,15 +34,25 @@ public class Cinema {
 
     public void buyTicket() {
         while(noOfCustomer > 0) {
-            int ticket = (int) (Math.random() * 100 % 3) + 1;
-            if (availableSeat(ticket)) {
+            int ticket;
+            if (availableTicket == 1){
+                ticket = 1;
+            }else if (availableTicket == 2){
+                ticket = (int) (Math.random() * 100 % 2) + 1;
+            }else {
+                ticket = (int) (Math.random() * 100 % 3) + 1;
+            }
+            if (availableForSale(ticket)) {
                 assignSeat(ticket);
-            }//else
+            }else{
+                //System.out.println(noOfCustomer + "END");
+                return;
+            }
             noOfCustomer--;
         }
     }
 
-    private boolean availableSeat(int ticket) {
+    private boolean availableForSale(int ticket) {
         return (getRemainingSeat() >= ticket);
     }
 
@@ -48,6 +63,7 @@ public class Cinema {
                     if(ticket > 0) {
                         seat[i][j] = true;
                         ticket--;
+                        availableTicket--;
                         //System.out.println(seat[i][j] + "" + ticket);
                     }else{
                         break;
