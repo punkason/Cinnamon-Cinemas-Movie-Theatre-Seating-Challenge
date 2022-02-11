@@ -8,29 +8,33 @@ public class Cinema {
     private int noOfCustomer;
 
     public Cinema(int noOfCustomer){
-        this.noOfCustomer=noOfCustomer;
+        this.noOfCustomer = noOfCustomer;
         availableTicket = ROW * COLUMN;
         seat = new boolean [ROW][COLUMN];
     }
 
-    public int getAvailableSeat(){
-        return availableTicket;
-        /*int count = 0;
-        for(int i = 0; i < ROW; i++){
-            for(int j = 0; j < COLUMN; j++){
-                //System.out.println(seat[i][j]);
-                if (!seat[i][j]){
-                    count++;
+    private boolean availableForSale(int ticket) {
+        return (getAvailableSeat() >= ticket);
+    }
+
+    private void assignSeat(int ticket) {
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COLUMN; j++) {
+                if (!seat[i][j]) {
+                    if(ticket > 0) {
+                        seat[i][j] = true;
+                        ticket--;
+                        availableTicket--;
+                    }else{
+                        break;
+                    }
                 }
             }
         }
-        return count;
-
-         */
     }
 
-    public boolean [][] getSeat(){
-        return seat;
+    public int getAvailableSeat(){
+        return availableTicket;
     }
 
     public void buyTicket() {
@@ -46,31 +50,9 @@ public class Cinema {
             if (availableForSale(ticket)) {
                  assignSeat(ticket);
             }else{
-                //System.out.println(noOfCustomer + "END");
                 return;
             }
             noOfCustomer--;
-        }
-    }
-
-    private boolean availableForSale(int ticket) {
-        return (getAvailableSeat() >= ticket);
-    }
-
-    private void assignSeat(int ticket) {
-        //System.out.println(ticket);
-        for (int i = 0; i < ROW; i++) {
-            for (int j = 0; j < COLUMN; j++) {
-                if (!seat[i][j]) {
-                    if(ticket > 0) {
-                        seat[i][j] = true;
-                        ticket--;
-                        availableTicket--;
-                    }else{
-                        break;
-                    }
-                }
-            }
         }
     }
 
@@ -91,7 +73,6 @@ public class Cinema {
                 }
                 output += "\n";
             }
-            //System.out.println(output);
             return output;
         }
     }
