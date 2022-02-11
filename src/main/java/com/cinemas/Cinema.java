@@ -26,7 +26,7 @@ public class Cinema {
                         ticket--;
                         availableTicket--;
                     }else{
-                        break;
+                        return;
                     }
                 }
             }
