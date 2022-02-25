@@ -8,7 +8,7 @@ public class CinemasSeatTest {
         private static final int MAX_SEAT = 15;
 
         @Test
-        public void noCustomer(){
+        public void checkNoSeatsAreFilledForEmptyCinema(){
                 //Arrange
                 Cinema cinema = new Cinema(0);
 
@@ -27,7 +27,7 @@ public class CinemasSeatTest {
         }
 
         @Test
-        public void oneCustomer(){
+        public void checkSeatsAreFilledForOneCustomer(){
                 //Arrange
                 Cinema cinema = new Cinema(1);
 
@@ -49,7 +49,7 @@ public class CinemasSeatTest {
         }
 
         @Test
-        public void twoCustomers(){
+        public void checkSeatsAreFilledAcrossRowsAAndB(){
                 //Arrange
                 Cinema cinema = new Cinema(2);
 
@@ -73,7 +73,7 @@ public class CinemasSeatTest {
         }
 
         @Test
-        public void fullHouse(){
+        public void checkNoMoreSeatsAvailable(){
                 //Arrange
                 Cinema cinema = new Cinema(15);
 
